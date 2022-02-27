@@ -1,5 +1,3 @@
-import { useCallback } from "react";
-
 const BASE_URL = 'https://wagon-garage-api.herokuapp.com';
 
 export function fetchCars(garage) {
@@ -9,7 +7,7 @@ export function fetchCars(garage) {
   return {
     type: 'FETCH_CARS',
     payload: promise
-  }
+  };
 }
 
 export function addCar(garage, car, callback) {
@@ -27,5 +25,17 @@ export function addCar(garage, car, callback) {
   return {
     type: 'ADD_CAR',
     payload: request
+  };
+}
+
+export function removeCar(history, car) {
+  const url = `${BASE_URL}/cars/${car.id}`;
+  fetch(url, { method: 'DELETE' })
+    .then(r => r.json())
+    .then(() => history.push(""));
+
+  return {
+    type: 'REMOVE_CAR',
+    payload: car
   };
 }

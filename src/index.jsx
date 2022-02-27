@@ -10,6 +10,7 @@ import { reducer as formReducer } from 'redux-form';
 
 import CarsIndex from './containers/CarsIndex';
 import CarsNew from './containers/CarsNew';
+import CarsShow from './containers/CarsShow';
 
 import carsReducer from './reducers/cars_reducer';
 
@@ -22,7 +23,7 @@ const initialState = {
 };
 
 const reducers = combineReducers({
-  garage: (state = null, action) => state,
+  garage: (state = null) => state,
   cars: carsReducer,
   form: formReducer
 });
@@ -37,6 +38,7 @@ ReactDOM.render(
         <Switch>
           <Route path="/" exact component={CarsIndex} />
           <Route path="/cars/new" exact component={CarsNew} />
+          <Route path="/cars/:id" component={CarsShow} />
         </Switch>
       </div>
     </Router>
